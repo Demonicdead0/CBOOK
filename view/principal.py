@@ -3,8 +3,6 @@ from tkinter import font as tkfont
 from StartPage import *
 from style.botones import *
 
-
-
 class App(tk.Tk):
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
