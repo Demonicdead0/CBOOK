@@ -4,4 +4,9 @@ En la sección B, hay partes donde hay códigos, la idea principal, es cuando po
 ## Cosas que deben salir
 - [ ] [[Output]]
 - [ ] [[Tiempo ejecutado]]
-- [ ] [[Líneas ejecutadas]] (opcional)
+- [ ] [[Líneas ejecutadas]] (opcional){
+	"versionAtEmbed": "0.3.3",
+	"filepath": "Ink/Drawing/2025.1.27 - 18.50pm.drawing",
+	"width": 500,
+	"aspectRatio": 1
+}

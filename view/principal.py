@@ -2,8 +2,12 @@ import tkinter as tk
 from tkinter import font as tkfont
 from StartPage import *
 from style.botones import *
+from tkinter import filedialog
+from Ir import *
 
 class App(tk.Tk):
+    ruta_carpeta = "sin cambio"
+
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
         self.title_font = tkfont.Font(family='Helvetica', size=18, weight="bold", slant="italic")
@@ -15,7 +19,7 @@ class App(tk.Tk):
         container.grid_rowconfigure(0, weight=1)
 
         self.frames = {}
-        for F in (StartPage, PageOne, PageTwo):
+        for F in (StartPage, PageOne, PageTwo, Ir):
             page_name = F.__name__
             frame = F(parent=container, controller=self)
             self.frames[page_name] = frame
@@ -26,7 +30,11 @@ class App(tk.Tk):
     def show_frame(self, page_name):
         '''Muestra un frame con el nombre dado'''
         frame = self.frames[page_name]
+        frame.update()
         frame.tkraise()
+
+    def seleccionar_carpeta(self):
+        self.ruta_carpeta = filedialog.askdirectory()
 
 
 class PageOne(tk.Frame):

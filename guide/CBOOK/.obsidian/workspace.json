@@ -25,12 +25,14 @@
             "id": "48ccdca63ac7a122",
             "type": "leaf",
             "state": {
-              "type": "release-notes",
+              "type": "markdown",
               "state": {
-                "currentVersion": "1.8.4"
+                "file": "Diseño.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-book-up",
-              "title": "Release Notes 1.8.4"
+              "icon": "lucide-file",
+              "title": "Diseño"
             }
           }
         ],
@@ -196,12 +198,12 @@
       "command-palette:Abrir paleta de comandos": false
     }
   },
-  "active": "48ccdca63ac7a122",
+  "active": "c8f8c93c0ea73372",
   "lastOpenFiles": [
-    "CBOOK.md",
     "Diseño.md",
-    "Mostrar código.md",
     "Ejecuciones.md",
+    "CBOOK.md",
+    "Mostrar código.md",
     "Características.md",
     "Tiempo ejecutado.md",
     "Bienvenido.md",
