@@ -1,41 +1,68 @@
-try:
-    import tkinter as tk                # python 3
-    from tkinter import font as tkfont  # python 3
-    from tkinter import filedialog
-except ImportError:
-    import Tkinter as tk     # python 2
-    import tkFont as tkfont  # python 2
+import tkinter as tk
+from tkinter import font as tkfont
+from StartPage import *
+from style.botones import *
+from tkinter import filedialog
+from Ir import *
 
-from style.botones import boton_direccion
+class App(tk.Tk):
+    ruta_carpeta = "sin cambio"
 
-class StartPage(tk.Frame):
+    def __init__(self, *args, **kwargs):
+        tk.Tk.__init__(self, *args, **kwargs)
+        self.title_font = tkfont.Font(family='Helvetica', size=18, weight="bold", slant="italic")
 
-    carpeta = "None"
+        """El container es donde acumularemos los frames"""
+        container = tk.Frame(self)
+        container.pack(side="top", fill="both", expand=True)
+        container.grid_columnconfigure(0, weight=1)
+        container.grid_rowconfigure(0, weight=1)
+
+        self.frames = {}
+        for F in (StartPage, PageOne, PageTwo, Ir):
+            page_name = F.__name__
+            frame = F(parent=container, controller=self)
+            self.frames[page_name] = frame
+
+            frame.grid(row = 0, column = 0, sticky= "nsew")
+        self.show_frame("StartPage")
+    
+    def show_frame(self, page_name):
+        '''Muestra un frame con el nombre dado'''
+        frame = self.frames[page_name]
+        frame.update()
+        frame.tkraise()
+
+    def seleccionar_carpeta(self):
+        self.ruta_carpeta = filedialog.askdirectory()
+
+
+class PageOne(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
+        label = tk.Label(self, text="This is page 1", font=controller.title_font)
+        label.pack(side="top", fill="x", pady=10)
+        button = tk.Button(self, text="Go to the start page",
+                           command=lambda: controller.show_frame("StartPage"))
+        button.pack()
 
-        # contenido 
-        label = tk.Label(self, text="Este es el menu principal", font = controller.title_font)
-        label.pack(side="top", fill="x", pady = 10)
 
-        # botones
-        #button_buscar = boton_direccion(self, text="Buscar archivo", command=lambda: controller.show_frame("Buscar"))
-        #button_buscar = tk.Button(self, text="Seleccionar Carpeta", command=lambda: controller.show_frame("seleccionar"))
+class PageTwo(tk.Frame):
 
-        direccionar = tk.Label(self, text=self.controller.ruta_carpeta)
-        #direccionar.config(text="hola")
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.controller = controller
+        label = tk.Label(self, text="This is page 2", font=controller.title_font)
+        label.pack(side="top", fill="x", pady=10)
+        button = tk.Button(self, text="Go to the start page",
+                           command=lambda: controller.show_frame("StartPage"))
+        button.pack()
 
-        button_buscar = tk.Button(self, text="Seleccionar Carpeta", command= lambda: self.seleccionar_carpeta(direccionar))
-        button_crear = tk.Button(self, text = "Crear carpeta",
-                                command=lambda: controller.show_frame("Crear"))
-        button_go = tk.Button(self, text="Entrar", command=lambda: controller.show_frame("Ir"))
-        direccionar.pack()
-        button_buscar.pack()
-        button_crear.pack()
-        button_go.pack()
-    
-    def seleccionar_carpeta(self, letra : tk.Label):
-        self.controller.seleccionar_carpeta()
-        letra.config(text=self.controller.ruta_carpeta)
+
+# prueba de ejecucion
+
+if __name__ == "__main__":
+    app = App()
+    app.mainloop()
