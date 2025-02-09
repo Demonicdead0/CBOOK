@@ -39,3 +39,4 @@ class StartPage(tk.Frame):
     def seleccionar_carpeta(self, letra : tk.Label):
         self.controller.seleccionar_carpeta()
         letra.config(text=self.controller.ruta_carpeta)
+
