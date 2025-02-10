@@ -2,11 +2,17 @@ try:
     import tkinter as tk                # python 3
     from tkinter import font as tkfont  # python 3
     from tkinter import filedialog
+    from os import listdir
+    from os import path
 except ImportError:
     import Tkinter as tk     # python 2
     import tkFont as tkfont  # python 2
 
 class Ir(tk.Frame):
+
+    # lista de elementos (direcciones y archivos)
+    elementos = []
+    nombres = []
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
@@ -15,7 +21,34 @@ class Ir(tk.Frame):
         # contenido
         self.ruta = tk.Label(self, text=self.controller.ruta_carpeta)
         self.ruta.pack()
-        
+
+        self.salir = tk.Button(self, text="Salir", command= lambda: self.controller.show_frame("StartPage"))
+        self.crear_carpeta = tk.Button(self, text="Crear carpeta")
+        self.crear_archivo = tk.Button(self, text="Crear texto")
+        self.salir.pack()
+        self.crear_carpeta.pack()
+        self.crear_archivo.pack()
     
+
+    
+    def direccionar(self, ruta: str):
+        #print("##")
+        #print(self.controller.ruta_carpeta)
+        #print(ruta)
+        #print(path.join(self.controller.ruta_carpeta, ruta))
+        self.controller.ruta_carpeta = path.join(self.controller.ruta_carpeta, ruta)
+        self.controller.show_frame("Ir")
+
     def update(self):
+        #print("update")
         self.ruta.config(text=self.controller.ruta_carpeta)
+        self.nombres = listdir(self.controller.ruta_carpeta)
+
+        for botones in self.elementos:
+            botones.config(text = "destruido")
+            botones.destroy()
+        self.elementos = []
+
+        for i in range(len(self.nombres)):
+            self.elementos.append(tk.Button(self, text=self.nombres[i], command=lambda c = i: self.direccionar(self.elementos[c].cget("text"))))
+            self.elementos[i].pack()
