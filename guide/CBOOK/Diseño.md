@@ -8,8 +8,8 @@ Pues primero que debe tener lo siguiente:
 	- [ ] En la parte de abajo existirá un botón que es para crear nuevo tema 
 
 # Vista
-- [ ] Menú principal.
-- [ ] Contenido
+- [x] Menú principal.
+- [x] Contenido
 - [ ] Archivos
 
 # Prototipo Alpha

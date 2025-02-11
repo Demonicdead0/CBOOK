@@ -4,6 +4,7 @@ try:
     from tkinter import filedialog
     from os import listdir
     from os import path
+    from pathlib import Path
 except ImportError:
     import Tkinter as tk     # python 2
     import tkFont as tkfont  # python 2
@@ -25,11 +26,17 @@ class Ir(tk.Frame):
         self.salir = tk.Button(self, text="Salir", command= lambda: self.controller.show_frame("StartPage"))
         self.crear_carpeta = tk.Button(self, text="Crear carpeta")
         self.crear_archivo = tk.Button(self, text="Crear texto")
+        self.back = tk.Button(self, text="retroceder", command=lambda: self.retroceder())
+        self.back.pack()
         self.salir.pack()
         self.crear_carpeta.pack()
         self.crear_archivo.pack()
     
-
+    def retroceder(self):
+        #print(self.controller.ruta_carpeta)
+        #print(Path(self.controller.ruta_carpeta).parent.absolute())
+        self.controller.ruta_carpeta = Path(self.controller.ruta_carpeta).parent.absolute()
+        self.controller.show_frame("Ir")
     
     def direccionar(self, ruta: str):
         #print("##")
