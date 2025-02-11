@@ -56,6 +56,16 @@ class Ir(tk.Frame):
             botones.destroy()
         self.elementos = []
 
+        valores = []
+        #print(self.nombres)
         for i in range(len(self.nombres)):
-            self.elementos.append(tk.Button(self, text=self.nombres[i], command=lambda c = i: self.direccionar(self.elementos[c].cget("text"))))
+            name: str = self.nombres[i]
+            if (self.nombres[i].count('.') == 0) or name.endswith(".md"):
+                valores.append(self.nombres[i])
+        
+        #print(valores)
+        for i in range(len(valores)):
+            self.elementos.append(tk.Button(self, text=valores[i], command=lambda c = i: self.direccionar(self.elementos[c].cget("text"))))
+            if valores[i].endswith(".md"):
+                self.elementos[i].config(bg="blue");
             self.elementos[i].pack()
