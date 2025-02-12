@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2025-02-11.md",
+                "file": "2025-02-12.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2025-02-11"
+              "title": "2025-02-12"
             }
           }
         ]
@@ -185,6 +185,7 @@
   },
   "active": "c3422d1c78dadd3f",
   "lastOpenFiles": [
+    "2025-02-12.md",
     "2025-02-11.md",
     "Diseño.md",
     "CBOOK.md",
