@@ -45,6 +45,10 @@ class Ir(tk.Frame):
         #print(path.join(self.controller.ruta_carpeta, ruta))
         self.controller.ruta_carpeta = path.join(self.controller.ruta_carpeta, ruta)
         self.controller.show_frame("Ir")
+    
+    def entrar(self, ruta:str):
+        self.controller.ruta_carpeta = path.join(self.controller.ruta_carpeta, ruta)
+        self.controller.show_frame("Content")
 
     def update(self):
         #print("update")
@@ -60,12 +64,12 @@ class Ir(tk.Frame):
         #print(self.nombres)
         for i in range(len(self.nombres)):
             name: str = self.nombres[i]
-            if (self.nombres[i].count('.') == 0) or name.endswith(".md"):
+            if (self.nombres[i].count('.') == 0) or name.endswith(".cbook"):
                 valores.append(self.nombres[i])
         
         #print(valores)
         for i in range(len(valores)):
             self.elementos.append(tk.Button(self, text=valores[i], command=lambda c = i: self.direccionar(self.elementos[c].cget("text"))))
-            if valores[i].endswith(".md"):
-                self.elementos[i].config(bg="blue");
+            if valores[i].endswith(".cbook"):
+                self.elementos[i].config(bg="blue", command = lambda c = i: self.entrar(self.elementos[c].cget("text")));
             self.elementos[i].pack()
