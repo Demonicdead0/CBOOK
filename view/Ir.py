@@ -24,13 +24,14 @@ class Ir(tk.Frame):
         self.ruta.pack()
 
         self.salir = tk.Button(self, text="Salir", command= lambda: self.controller.show_frame("StartPage"))
-        self.crear_carpeta = tk.Button(self, text="Crear carpeta")
+        self.crear_carpeta = tk.Button(self, text="Crear carpeta", command= lambda: self.controller.show_frame("Create"))
         self.crear_archivo = tk.Button(self, text="Crear texto")
         self.back = tk.Button(self, text="retroceder", command=lambda: self.retroceder())
         self.back.pack()
         self.salir.pack()
         self.crear_carpeta.pack()
         self.crear_archivo.pack()
+   
     
     def retroceder(self):
         #print(self.controller.ruta_carpeta)

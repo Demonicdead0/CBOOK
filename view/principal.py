@@ -5,6 +5,7 @@ from style.botones import *
 from tkinter import filedialog
 from Ir import *
 from Content import *
+from Create import *
 
 class App(tk.Tk):
     ruta_carpeta = "sin cambio"
@@ -20,7 +21,7 @@ class App(tk.Tk):
         container.grid_rowconfigure(0, weight=1)
 
         self.frames = {}
-        for F in (StartPage, PageOne, PageTwo, Ir, Content):
+        for F in (StartPage, PageOne, PageTwo, Ir, Content, Create):
             page_name = F.__name__
             frame = F(parent=container, controller=self)
             self.frames[page_name] = frame
