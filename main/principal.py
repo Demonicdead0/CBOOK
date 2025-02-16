@@ -6,6 +6,7 @@ from tkinter import filedialog
 from Ir import *
 from Content import *
 from Create import *
+from CrearCbook import *
 
 class App(tk.Tk):
     ruta_carpeta = "sin cambio"
@@ -24,7 +25,7 @@ class App(tk.Tk):
         container.grid_rowconfigure(0, weight=1)
 
         self.frames = {}
-        for F in (StartPage, PageOne, PageTwo, Ir, Content, Create):
+        for F in (StartPage, PageOne, PageTwo, Ir, Content, Create, CreateCbook):
             page_name = F.__name__
             frame = F(parent=container, controller=self)
             self.frames[page_name] = frame

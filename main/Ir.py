@@ -25,7 +25,7 @@ class Ir(tk.Frame):
 
         self.salir = tk.Button(self, text="Salir", command= lambda: self.controller.show_frame("StartPage"))
         self.crear_carpeta = tk.Button(self, text="Crear carpeta", command= lambda: self.controller.show_frame("Create"))
-        self.crear_archivo = tk.Button(self, text="Crear texto")
+        self.crear_archivo = tk.Button(self, text="Crear archivo", command= lambda: self.controller.show_frame("CreateCbook"))
         self.back = tk.Button(self, text="retroceder", command=lambda: self.retroceder())
         self.back.pack()
         self.salir.pack()
