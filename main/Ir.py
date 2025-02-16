@@ -65,12 +65,23 @@ class Ir(tk.Frame):
         #print(self.nombres)
         for i in range(len(self.nombres)):
             name: str = self.nombres[i]
-            if (self.nombres[i].count('.') == 0) or name.endswith(".cbook"):
+            if (self.nombres[i].count('.') == 0):
                 valores.append(self.nombres[i])
         
         #print(valores)
+
+        for i in range(len(valores)):
+            self.elementos.append(tk.Button(self, text=valores[i], command=lambda c = i: self.direccionar(self.elementos[c].cget("text"))))
+            verify = path.join(self.controller.ruta_carpeta, valores[i], "ini.cfg")
+            if path.isfile(verify):
+                print(f"I see a ini.cfg in {valores[i]}")
+                self.elementos[i].config(bg = "blue", command = lambda c= i: self.entrar(self.elementos[c].cget("text")))
+            self.elementos[i].pack()
+            
+        """
         for i in range(len(valores)):
             self.elementos.append(tk.Button(self, text=valores[i], command=lambda c = i: self.direccionar(self.elementos[c].cget("text"))))
             if valores[i].endswith(".cbook"):
                 self.elementos[i].config(bg="blue", command = lambda c = i: self.entrar(self.elementos[c].cget("text")));
             self.elementos[i].pack()
+        """
