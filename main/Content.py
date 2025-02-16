@@ -25,16 +25,20 @@ class Content(tk.Frame):
         # Area de texto para escribir Markdown
         self.text_area = scrolledtext.ScrolledText(self, wrap=tk.WORD, font=("Courier", 12))
         #self.text_area.grid(row = 0, column=0, sticky="nsew", padx=5, pady=5)
-        self.text_area.pack()
+        
 
         # Vista previa en un navegador embebido
         self.html_frame = HtmlFrame(self)
         #self.html_frame.grid(row=0, column = 1, sticky="nsew", padx = 5, pady = 5)
-        self.html_frame.pack()
+        
 
         # botón para convertir Markdown a HTML (posiblemente construya desde cero)
         # Ahora solo estoy usando una librería
         self.btn_convert = tk.Button(self, text="Actualizar", command=self.convert_markdown)
+        self.btn_convert.pack()
+        
+        self.text_area.pack()
+        self.html_frame.pack()
 
     def convert_markdown(self):
         raw_text = self.text_area.get("1.0", tk.END)
