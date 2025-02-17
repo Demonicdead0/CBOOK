@@ -42,6 +42,12 @@ class CreateCbook(tk.Frame):
             f.write(str(js))
             f.close()
 
+            inicio = path.join(direccion, "main.md")
+            f = open(inicio, "w")
+            f.write("#h1")
+            f.close()
+            mkdir(path.join(direccion, "img"))
+
         except FileExistsError:
             print(f"{direccion} Ya existe")
         except PermissionError:

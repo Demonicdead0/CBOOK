@@ -57,3 +57,16 @@ class Content(tk.Frame):
         </html>
         """
         self.html_frame.load_html(styled_html)
+        direccion = path.join(self.controller.ruta_carpeta, "main.md")
+        with open(direccion, "w") as f:
+            f.write(raw_text)
+        f.close()
+            
+    
+    def update(self):
+        self.text_area.insert(tk.END, "")
+        direccion = path.join(self.controller.ruta_carpeta, "main.md")
+        with open(direccion, "r") as f:
+            self.text_area.insert(tk.INSERT, f.read())
+        self.convert_markdown()
+        print(self.controller.ruta_carpeta)
