@@ -14,10 +14,10 @@ class App(tk.Tk):
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
         self.title_font = tkfont.Font(family='Helvetica', size=18, weight="bold", slant="italic")
-        self.columnconfigure(0, weight=1)
-        self.columnconfigure(1, weight=1)
-        self.rowconfigure(0, weight=1)
+        heigh = self.winfo_screenheight()
+        width = self.winfo_screenwidth()
 
+        self.geometry("%dx%d" % (width, heigh))
         """El container es donde acumularemos los frames"""
         container = tk.Frame(self)
         container.pack(side="top", fill="both", expand=True)

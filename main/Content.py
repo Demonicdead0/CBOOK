@@ -20,25 +20,46 @@ class Content(tk.Frame):
 
         # contenido 
         self.label = tk.Label(self,text="hola, este es el menu")
-        self.label.grid()
+        
+        h = self.controller.winfo_screenheight()
+        w = self.controller.winfo_screenwidth()
 
         # Area de texto para escribir Markdown
-        self.text_area = scrolledtext.ScrolledText(self, wrap=tk.WORD, font=("Courier", 12))
+        print(w,h)
+        self.text_area = scrolledtext.ScrolledText(self, wrap=tk.WORD, font=("Courier", 12)
+                                                   ,width = w//(2*11), height = 20)
         #self.text_area.grid(row = 0, column=0, sticky="nsew", padx=5, pady=5)
         
 
         # Vista previa en un navegador embebido
-        self.html_frame = HtmlFrame(self)
+        self.html_frame = HtmlFrame(self,width = 40, height = 20)
         #self.html_frame.grid(row=0, column = 1, sticky="nsew", padx = 5, pady = 5)
         
 
         # botón para convertir Markdown a HTML (posiblemente construya desde cero)
         # Ahora solo estoy usando una librería
         self.btn_convert = tk.Button(self, text="Actualizar", command=self.convert_markdown)
-        self.btn_convert.grid()
-        
-        self.text_area.grid()
-        self.html_frame.grid()
+
+        self.retroceder = tk.Button(self, text="salir", command= lambda: self.back())
+
+        self.retroceder.grid(row=0, column=0, padx=5, pady=5, sticky="ew")
+        #self.label.grid(row = 0, column=1, padx=5, pady=5,sticky="ew")
+        self.btn_convert.grid(row=0, column=1, padx=5, pady=5,sticky="ew")
+
+        self.text_area.grid(row=1, column=0, sticky="nsew", padx=5, pady=5)
+        self.html_frame.grid(row=1, column = 1,sticky="nsew", padx=5, pady = 5)
+
+        #parent.columnconfigure(0, weight = 1)
+        #parent.columnconfigure(1, weight = 1)
+
+        #parent.rowconfigure(0, weight = 1)
+        #parent.rowconfigure(1, weight = 1)
+
+
+    def back(self):
+
+        self.controller.ruta_carpeta = Path(self.controller.ruta_carpeta).parent.absolute()
+        self.controller.show_frame("Ir")
 
     def convert_markdown(self):
         raw_text = self.text_area.get("1.0", tk.END)
@@ -64,7 +85,7 @@ class Content(tk.Frame):
             
     
     def update(self):
-        self.text_area.insert(tk.END, "")
+        self.text_area.delete("1.0", tk.END)
         direccion = path.join(self.controller.ruta_carpeta, "main.md")
         with open(direccion, "r") as f:
             self.text_area.insert(tk.INSERT, f.read())
