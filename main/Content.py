@@ -18,9 +18,10 @@ class Content(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
+        #self.grid_propagate(False)
 
         # contenido 
-        self.label = tk.Label(self,text="hola, este es el menu")
+        #self.label = tk.Label(self,text="hola, este es el menu")
         
         h = self.controller.winfo_screenheight()
         w = self.controller.winfo_screenwidth()
@@ -51,14 +52,17 @@ class Content(tk.Frame):
         self.btn_convert.grid(row=0, column=2, padx=5, pady=5,sticky="ew")
 
         self.text_area.grid(row=1, column=0, sticky="nsew", padx=5, pady=5)
-        self.html_frame.grid(row=1, column = 1,sticky="nsew", padx=5, pady = 5)
+        self.html_frame.grid(row=1, column = 1, columnspan = 2,sticky="nsew", padx=5, pady = 5)
 
-        parent.columnconfigure(0, weight = 1)
-        parent.columnconfigure(1, weight = 1)
-        parent.columnconfigure(2, weight = 1)
+        """
+        self.columnconfigure(0, weight = 1)
+        self.columnconfigure(1, weight = 1)
+        self.columnconfigure(2, weight = 1)
 
-        parent.rowconfigure(0, weight = 1)
-        #parent.rowconfigure(1, weight = 1)
+        self.rowconfigure(0, weight = 0)
+        self.rowconfigure(1, weight = 1)
+        """
+        
 
     def generar_PDF(self):
         raw_text = self.text_area.get("1.0", tk.END)

@@ -21,8 +21,9 @@ class App(tk.Tk):
         """El container es donde acumularemos los frames"""
         container = tk.Frame(self)
         container.pack(side="top", fill="both", expand=True)
-        container.grid_columnconfigure(0, weight=1)
-        container.grid_rowconfigure(0, weight=1)
+        #container.grid_columnconfigure(0, weight=1)
+        #container.grid_columnconfigure(1, weight=1)
+        #container.grid_columnconfigure(2, weight=1)
 
         self.frames = {}
         for F in (StartPage, PageOne, PageTwo, Ir, Content, Create, CreateCbook):
