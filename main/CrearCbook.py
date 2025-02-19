@@ -46,6 +46,11 @@ class CreateCbook(tk.Frame):
             f = open(inicio, "w")
             f.write("#h1")
             f.close()
+
+            inicio = path.join(direccion, "index.html")
+            f = open(inicio, "w")
+            f.write("")
+            f.close()
             mkdir(path.join(direccion, "img"))
 
         except FileExistsError:

@@ -8,6 +8,7 @@ try:
     from os import listdir
     from os import path
     from pathlib import Path
+    import pdfkit
 except ImportError:
     import Tkinter as tk     # python 2
     import tkFont as tkfont  # python 2
@@ -42,18 +43,48 @@ class Content(tk.Frame):
 
         self.retroceder = tk.Button(self, text="salir", command= lambda: self.back())
 
+        self.btn_generarPDF = tk.Button(self, text="Generar PDF", command= lambda: self.generar_PDF())
+
         self.retroceder.grid(row=0, column=0, padx=5, pady=5, sticky="ew")
         #self.label.grid(row = 0, column=1, padx=5, pady=5,sticky="ew")
-        self.btn_convert.grid(row=0, column=1, padx=5, pady=5,sticky="ew")
+        self.btn_generarPDF.grid(row=0, column=1, padx=5, pady=5, sticky="ew")
+        self.btn_convert.grid(row=0, column=2, padx=5, pady=5,sticky="ew")
 
         self.text_area.grid(row=1, column=0, sticky="nsew", padx=5, pady=5)
         self.html_frame.grid(row=1, column = 1,sticky="nsew", padx=5, pady = 5)
 
-        #parent.columnconfigure(0, weight = 1)
-        #parent.columnconfigure(1, weight = 1)
+        parent.columnconfigure(0, weight = 1)
+        parent.columnconfigure(1, weight = 1)
+        parent.columnconfigure(2, weight = 1)
 
-        #parent.rowconfigure(0, weight = 1)
+        parent.rowconfigure(0, weight = 1)
         #parent.rowconfigure(1, weight = 1)
+
+    def generar_PDF(self):
+        raw_text = self.text_area.get("1.0", tk.END)
+        html_content = markdown.markdown(raw_text, extensions=["fenced_code"])
+        styled_html = f"""
+        <html>
+        <head>
+            <style>
+                body {{ font-family: Arial, sans-serif; padding: 10px; }}
+                pre {{ background-color: #f4f4f4; padding: 10px; border-radius: 5px; }}
+                code {{ color: #d63384; }}
+            </style>
+        </head>
+        <body>{html_content}</body>
+        </html>
+        """
+        archivo = path.join(self.controller.ruta_carpeta, "index.html")
+        with open(archivo, "w", encoding = "utf-8") as f:
+            f.write(styled_html)
+
+        config = pdfkit.configuration(wkhtmltopdf=r"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe")
+        download_folder = path.join(path.expanduser("~"), "Downloads")
+        pdfkit.from_file(archivo, path.join(download_folder,"hola.pdf"), configuration=config)
+        print("pdf generado")
+
+        
 
 
     def back(self):
