@@ -75,6 +75,11 @@ class Content(tk.Frame):
                 pre {{ background-color: #f4f4f4; padding: 10px; border-radius: 5px; }}
                 code {{ color: #d63384; }}
             </style>
+
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+            <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+            <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+                onload="renderMathInElement(document.body);"></script>
         </head>
         <body>{html_content}</body>
         </html>
