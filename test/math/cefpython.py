@@ -14,7 +14,7 @@ def main():
     win = Tk()
     win.minsize(800, 600)
     win.grid_columnconfigure(0, weight=1)
-    win.grid_columnconfigure(1, weight=2)
+    win.grid_columnconfigure(1, weight=1)
     win.grid_rowconfigure(0, weight=1)
 
     # Editor de texto
@@ -22,7 +22,7 @@ def main():
     editor_frame.grid(row=0, column=0, sticky="nswe")
     text_editor = tk.Text(editor_frame, wrap=tk.WORD)
     text_editor.pack(fill=tk.BOTH, expand=True)
-    text_editor.insert(tk.END, "Hola, puedes editarme sin problemas ahora!")
+    text_editor.insert(tk.END, "Hola, ahora sí deberías poder editarme!")
 
     # Crear el frame del navegador
     frame = Frame(win, bg='black')
@@ -56,10 +56,13 @@ class BrowserFrame(tk.Frame):
         self.focus_set()
 
     def embed_browser(self):
-        """Inicializar el navegador embebido."""
+        """Inicializar el navegador embebido en el hilo de la UI."""
         window_info = cef.WindowInfo()
         rect = [0, 0, self.winfo_width(), self.winfo_height()]
         window_info.SetAsChild(self.get_window_handle(), rect)
+        cef.PostTask(cef.TID_UI, self.create_browser, window_info)
+
+    def create_browser(self, window_info):
         self.browser = cef.CreateBrowserSync(
             window_info,
             url="file:///C:/Users/USER/Desktop/proyectos/2025/enero/cbook/test/math/index.html"

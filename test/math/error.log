@@ -1,0 +1,19 @@
+
+[2025-02-20 17:30:26] Traceback (most recent call last):
+  File ".\cefpython.py", line 98, in <module>
+  File ".\cefpython.py", line 44, in main
+    win.mainloop()
+  File "C:\Users\USER\.pyenv\pyenv-win\versions\3.8.10\lib\tkinter\__init__.py", line 1429, in mainloop
+    self.tk.mainloop(n)
+KeyboardInterrupt
+
+
+[2025-02-20 17:34:58] Traceback (most recent call last):
+  File ".\cefpython.py", line 101, in <module>
+    main()
+  File ".\cefpython.py", line 44, in main
+    win.mainloop()
+  File "C:\Users\USER\.pyenv\pyenv-win\versions\3.8.10\lib\tkinter\__init__.py", line 1429, in mainloop
+    self.tk.mainloop(n)
+KeyboardInterrupt
+
