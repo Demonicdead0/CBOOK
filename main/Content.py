@@ -70,6 +70,7 @@ class Content(tk.Frame):
         styled_html = f"""
         <html>
         <head>
+            <meta charset="UTF-8">
             <style>
                 body {{ font-family: Arial, sans-serif; padding: 10px; }}
                 pre {{ background-color: #f4f4f4; padding: 10px; border-radius: 5px; }}

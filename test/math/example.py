@@ -1,38 +1,26 @@
-import tkinter as tk
+from PIL import Image
+
+# Compatibilidad con versiones antiguas
+if not hasattr(Image, 'ANTIALIAS'):
+    Image.ANTIALIAS = Image.Resampling.LANCZOS
+
+from tkinter import Tk
+
 from tkhtmlview import HTMLLabel
 
-root = tk.Tk()
-root.geometry("600x400")
+# Crear la ventana principal
+root = Tk()
+root.title("Imagen desde URL")
+root.geometry("400x400")
 
-html_content = """
-<!DOCTYPE html>
-<html>
-<head>
-    <!-- Cargar KaTeX desde una CDN -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
-        onload="renderMathInElement(document.body);"></script>
-</head>
-<body>
-    <h2>Ejemplo de Fórmulas Matemáticas con KaTeX</h2>
-    
-    <p>Esta es una ecuación en línea: \\( E = mc^2 \\)</p>
-
-    <p>Ecuación en bloque:</p>
-    <p>$$
-    \\sum_{i=1}^{n} i = \\frac{n(n+1)}{2}
-    $$</p>
-
-    <p>Otra ecuación más avanzada:</p>
-    <p>$$
-    \\int_{0}^{\\infty} e^{-x^2} dx = \\frac{\\sqrt{\\pi}}{2}
-    $$</p>
-</body>
-</html>
+# HTML con imagen desde URL
+html_code = """
+<h1>Imagen en línea</h1>
+<img src="https://media.istockphoto.com/id/1985248194/photo/businessman-using-laptop-computer-with-digital-padlock-on-internet-technology-networking.jpg?s=2048x2048&w=is&k=20&c=9qSW4Y_THSsxS7LasJNxS0Tcvt8tIcICVyWy8_aCCNw=" width="200" height="100">
 """
 
-label = HTMLLabel(root, html=html_content)
+# Mostrar la imagen en la ventana
+label = HTMLLabel(root, html=html_code)
 label.pack(fill="both", expand=True)
 
 root.mainloop()
