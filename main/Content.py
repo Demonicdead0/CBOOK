@@ -1,17 +1,15 @@
-try:
-    import tkinter as tk                # python 3
-    from tkinter import font as tkfont  # python 3
-    from tkinter import filedialog
-    from tkinter import scrolledtext
-    import markdown
-    from tkinterweb import HtmlFrame
-    from os import listdir
-    from os import path
-    from pathlib import Path
-    import pdfkit
-except ImportError:
-    import Tkinter as tk     # python 2
-    import tkFont as tkfont  # python 2
+import tkinter as tk                # python 3
+from tkinter import font as tkfont  # python 3
+from tkinter import filedialog
+from tkinter import scrolledtext
+import markdown
+from module.markdown2 import markdown2
+from tkinterweb import HtmlFrame
+from os import listdir
+from os import path
+from pathlib import Path
+import pdfkit
+
 
 
 class Content(tk.Frame):
@@ -66,7 +64,8 @@ class Content(tk.Frame):
 
     def generar_PDF(self):
         raw_text = self.text_area.get("1.0", tk.END)
-        html_content = markdown.markdown(raw_text, extensions=["fenced_code"])
+        #html_content = markdown.markdown(raw_text, extensions=["fenced_code"])
+        html_content = markdown2(raw_text, self.controller.ruta_carpeta)
         styled_html = f"""
         <html>
         <head>
@@ -104,8 +103,11 @@ class Content(tk.Frame):
 
     def convert_markdown(self):
         raw_text = self.text_area.get("1.0", tk.END)
-        html_content = markdown.markdown(raw_text, extensions=["fenced_code"])
+        #html_content = markdown.markdown(raw_text, extensions=["fenced_code"])
+        #markdown2(raw_text)
+        html_content = markdown2(raw_text, self.controller.ruta_carpeta)
 
+        print(html_content)
         styled_html = f"""
         <html>
         <head>

@@ -1,15 +1,10 @@
-try:
-    import tkinter as tk                # python 3
-    from tkinter import font as tkfont  # python 3
-    from tkinter import filedialog
-    from os import listdir
-    from os import path, mkdir  
-    from pathlib import Path
-    from tkinter import END
-except ImportError:
-    import Tkinter as tk     # python 2
-    import tkFont as tkfont  # python 2
-
+import tkinter as tk                # python 3
+from tkinter import font as tkfont  # python 3
+from tkinter import filedialog
+from os import listdir
+from os import path, mkdir  
+from pathlib import Path
+from tkinter import END
 class Create(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
