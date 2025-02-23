@@ -1,7 +1,8 @@
 from matplotlib import pyplot as plt
 
 def latexToPng(formula: str, salida: str) -> None:
-    latex_expression = formula
+    latex_expression = r"$%s$" % formula
+    print(latex_expression)
     fig = plt.figure(figsize=(3,0.5))
     text = fig.text(
         x = .5,
