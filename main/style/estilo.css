@@ -12,3 +12,7 @@ code{
     color: #d63384;;
 }
 
+img{
+    display: block;
+    margin: 0 auto;
+}
