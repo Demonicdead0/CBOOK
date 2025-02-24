@@ -13,3 +13,4 @@ def latexToPng(formula: str, salida: str) -> None:
         fontsize=16,
     )
     plt.savefig(salida)
+    print(f"save in {salida}")

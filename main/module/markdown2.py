@@ -19,7 +19,7 @@ def markdown2(texto: str, ruta: str) -> str:
             contenido:str = bloques[i].strip()
             ubicacion = os.path.join(ruta, "img", str(x) + ".png")
             latexToPng(contenido, ubicacion)
-            ubicacion_url = Path(ubicacion).as_uri()
+            ubicacion_url = ("img/") +(str(x) + ".png")
             resultado += f"\n <img src=\"{ubicacion_url}\">\n"
             x+=1
         else:

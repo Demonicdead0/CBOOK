@@ -9,6 +9,7 @@ from os import listdir
 from os import path
 from pathlib import Path
 import pdfkit
+# import weasyprint
 
 
 
@@ -120,7 +121,21 @@ class Content(tk.Frame):
         <body>{html_content}</body>
         </html>
         """
-        self.html_frame.load_html(styled_html)
+        print()
+        archivo = path.join(self.controller.ruta_carpeta, "index.html")
+        with open(archivo, "w", encoding = "utf-8") as f:
+            f.write(styled_html)
+
+        direccionHTML = Path(path.join(self.controller.ruta_carpeta, "index.html")).absolute()
+        # Verificar si el archivo existe y cargarlo
+        if direccionHTML.exists():
+            html_file_url = direccionHTML.as_uri()
+            print(f"Cargando desde: {html_file_url}")
+            self.html_frame.load_file(html_file_url)
+        else:
+            print("❌ El archivo HTML no existe.")
+
+
         direccion = path.join(self.controller.ruta_carpeta, "main.md")
         with open(direccion, "w") as f:
             f.write(raw_text)
