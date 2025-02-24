@@ -107,15 +107,14 @@ class Content(tk.Frame):
         #html_content = markdown.markdown(raw_text, extensions=["fenced_code"])
         #markdown2(raw_text)
         html_content = markdown2(raw_text, self.controller.ruta_carpeta)
-
+        with open("./style/estilo.css","r") as f:
+            style = f.read()
         print(html_content)
         styled_html = f"""
         <html>
         <head>
             <style>
-                body {{ font-family: Arial, sans-serif; padding: 10px; }}
-                pre {{ background-color: #f4f4f4; padding: 10px; border-radius: 5px; }}
-                code {{ color: #d63384; }}
+                {style}
             </style>
         </head>
         <body>{html_content}</body>
