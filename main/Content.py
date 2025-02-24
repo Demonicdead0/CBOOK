@@ -9,6 +9,7 @@ from os import listdir
 from os import path
 from pathlib import Path
 import pdfkit
+import time
 # import weasyprint
 
 
@@ -109,7 +110,7 @@ class Content(tk.Frame):
         html_content = markdown2(raw_text, self.controller.ruta_carpeta)
         with open("./style/estilo.css","r") as f:
             style = f.read()
-        print(html_content)
+        #print(html_content)
         styled_html = f"""
         <html>
         <head>
@@ -120,17 +121,20 @@ class Content(tk.Frame):
         <body>{html_content}</body>
         </html>
         """
-        print()
+        print(styled_html)
         archivo = path.join(self.controller.ruta_carpeta, "index.html")
         with open(archivo, "w", encoding = "utf-8") as f:
             f.write(styled_html)
+            f.close()
 
         direccionHTML = Path(path.join(self.controller.ruta_carpeta, "index.html")).absolute()
         # Verificar si el archivo existe y cargarlo
         if direccionHTML.exists():
             html_file_url = direccionHTML.as_uri()
             print(f"Cargando desde: {html_file_url}")
-            self.html_frame.load_file(html_file_url)
+            #self.html_frame.load_content("")
+            tt = time.time()
+            self.html_frame.load_html(styled_html)
         else:
             print("❌ El archivo HTML no existe.")
 
@@ -146,5 +150,7 @@ class Content(tk.Frame):
         direccion = path.join(self.controller.ruta_carpeta, "main.md")
         with open(direccion, "r") as f:
             self.text_area.insert(tk.INSERT, f.read())
+        
         self.convert_markdown()
         print(self.controller.ruta_carpeta)
+        #self.html_frame.reload()
