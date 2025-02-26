@@ -24,6 +24,8 @@ def markdown2(texto: str, ruta: str) -> str:
             x+=1
         else:
             # texto
+            texto: str = bloques[i]
+            texto = texto.replace("|", "***")
             contenido =  markdown.markdown(bloques[i], extensions=["fenced_code"])
             resultado += contenido
     print("completado")
