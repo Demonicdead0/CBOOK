@@ -134,8 +134,11 @@ class Content(tk.Frame):
             print(f"Cargando desde: {html_file_url}")
             #self.html_frame.load_content("")
             tt = time.time()
+
+            with open("temp/start.html", "r", encoding="utf-8") as f:
+                inicio_html = f.read()
             
-            self.html_frame.load_html(styled_html)
+            self.html_frame.load_html(inicio_html)
             self.html_frame.load_file(html_file_url)
         else:
             print("❌ El archivo HTML no existe.")
