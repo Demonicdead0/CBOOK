@@ -1,15 +1,20 @@
+*{
+    color: #f4f4f4;
+}
+
 body{
     font-family: 'Times New Roman', Times, serif;
     padding: 10px;
+    background-color: #000;
 }
 
 pre{
-    background-color: #f4f4f4;
+    background-color: #0f0f0f;
     padding: 10px;
 }
 
 code{
-    color: #d63384;;
+    color: #0fafff;;
 }
 
 img{
